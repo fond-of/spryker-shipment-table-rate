@@ -52,19 +52,19 @@ class ShipmentTableRateRepository extends AbstractRepository implements Shipment
         FosShipmentTableRateQuery $shipmentTableRateQuery,
         ShipmentTableRateCriteriaFilterTransfer $shipmentTableRateCriteriaFilterTransfer
     ): FosShipmentTableRateQuery {
-        if ($shipmentTableRateCriteriaFilterTransfer->getZipCodePatterns()) {
+        if (count($shipmentTableRateCriteriaFilterTransfer->getZipCodePatterns()) > 0) {
             $shipmentTableRateQuery->filterByZipCodePattern_In($shipmentTableRateCriteriaFilterTransfer->getZipCodePatterns());
         }
 
-        if ($shipmentTableRateCriteriaFilterTransfer->getFkCountry()) {
+        if ($shipmentTableRateCriteriaFilterTransfer->getFkCountry() !== null) {
             $shipmentTableRateQuery->filterByFkCountry($shipmentTableRateCriteriaFilterTransfer->getFkCountry());
         }
 
-        if ($shipmentTableRateCriteriaFilterTransfer->getFkStore()) {
+        if ($shipmentTableRateCriteriaFilterTransfer->getFkStore() !== null) {
             $shipmentTableRateQuery->filterByFkStore($shipmentTableRateCriteriaFilterTransfer->getFkStore());
         }
 
-        if ($shipmentTableRateCriteriaFilterTransfer->getPriceToPay()) {
+        if ($shipmentTableRateCriteriaFilterTransfer->getPriceToPay() !== null) {
             $shipmentTableRateQuery->filterByMinPriceToPay($shipmentTableRateCriteriaFilterTransfer->getPriceToPay(), Criteria::LESS_EQUAL);
         }
 
